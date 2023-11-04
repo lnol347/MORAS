@@ -1,0 +1,10 @@
+CHIP jedanB{
+    IN x,y,z;
+    OUT out;
+
+    PARTS:
+    Not(in=y, out=notY);
+	
+	And(a=x, b=notY, out=xAndNotY);
+	And(a=xAndNotY, b=z, out=out);
+}
