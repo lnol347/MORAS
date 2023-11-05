@@ -1,6 +1,7 @@
 Set Implicit Arguments.
 Require Import List.
 Import ListNotations.
+From Coq Require Import Lia.
 
 (* Bit *)
 
@@ -156,10 +157,20 @@ Qed.
 
 Lemma ALU_One (n : nat) (x y : list B) :
   length x = n /\ length y = n /\ n <> 0 -> ALU x y I I I I I I = repeat O (pred n) ++ [I].
-Proof. Admitted.
-
-
-
+Proof. 
+ intros [Hx [Hy Hn]]. (* Introduce the hypotheses *)
+  revert x y Hx Hy Hn. (* Generalize the goal *)
+  induction n as [|n' IHn'].
+- intros x y Hx Hy Hn. contradict Hn. lia. 
+- intros x y Hx Hy Hn. destruct x as [|x' xs], y as [|y' ys].
+-- discriminate Hx.
+-- discriminate Hx.
+-- discriminate Hy.
+-- simpl. simpl in Hx, Hy, IHn'. destruct (IHn' xs ys); simpl.
+--- auto.
+--- auto.
+--- apply eq_add_S in Hx, Hy. exfalso. apply Hn.
+Admitted.
 
 
 
