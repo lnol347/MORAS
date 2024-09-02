@@ -1,0 +1,27 @@
+class Main{  //pokretanje igre, gotovo
+    function void main(){
+        var char level;
+        var Easy easy;
+        var Medium medium;
+        var Hard hard;
+        
+        do Start.GameOver();
+        do Start.show();
+        
+        // odabir težine
+        let level = Keyboard.readChar(); 
+        if(level = 49){
+            let easy = easy.new();
+            do easy.play();
+        }
+        if(level = 50){
+            let medium = medium.new();
+            do medium.play();
+        }
+        if(level = 51){
+            let hard = hard.new();
+            do hard.play();
+        }
+        return;
+    }
+}

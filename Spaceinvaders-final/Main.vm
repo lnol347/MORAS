@@ -1,0 +1,48 @@
+function Main.main 4
+call Start.GameOver 0
+pop temp 0
+call Start.show 0
+pop temp 0
+call Keyboard.readChar 0
+pop local 0
+push local 0
+push constant 49
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+call Easy.new 1
+pop local 1
+push local 1
+call Easy.play 1
+pop temp 0
+label IF_FALSE0
+push local 0
+push constant 50
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 2
+call Medium.new 1
+pop local 2
+push local 2
+call Medium.play 1
+pop temp 0
+label IF_FALSE1
+push local 0
+push constant 51
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 3
+call Hard.new 1
+pop local 3
+push local 3
+call Hard.play 1
+pop temp 0
+label IF_FALSE2
+push constant 0
+return

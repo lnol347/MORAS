@@ -1,0 +1,53 @@
+class Cover{
+    field int x;
+    field int y;
+    field boolean destroyed;
+
+    constructor Cover new(int xx, int yy){
+        let x = xx;
+        let y = yy;
+        let destroyed = false;
+
+        return this;
+    }
+
+    method int getX(){
+        return x;
+    }
+
+    method int getY(){
+        return y;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        
+        return;
+    }
+
+    method boolean is_destroyed(){
+        return destroyed;
+    }
+    
+    method void drawif(int x, int y, boolean color){
+        if(~destroyed){
+            do Sprites.coverSprite(x, y, color);
+        }
+        
+        return;
+    }
+
+    method void draw(){
+        do drawif(x, y, true);
+        
+        return;
+    }
+
+    method void destroy(){
+        do Sprites.coverSprite(x, y, false);
+        let destroyed = true;
+        
+        return;
+    }
+
+}

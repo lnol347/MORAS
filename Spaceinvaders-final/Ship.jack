@@ -1,0 +1,52 @@
+class Ship{
+    field int x;
+    field int y;
+
+    constructor Ship new(int xx, int yy){
+        let x = xx;
+        let y = yy;
+
+        return this;
+    }
+        
+    method int getX(){
+        return x;
+    }
+
+    method int getY(){
+        return y;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        
+        return;
+    }
+
+    method void draw(){
+        do Sprites.shipSprite(x,y,true);
+        
+        return;
+    }
+
+    method void move_left(){
+        if(x > 30){  // lijeva granica ekrana
+            do Sprites.shipSprite(x,y,false); //izbrisi staru sliku
+            let x = x-4; //pomakni za cetiri piksela
+            do Sprites.shipSprite(x,y,true); // napravi novu sliku
+        }
+
+        return;
+    }
+
+    method void move_right(){
+        if(x < 450){
+            do Sprites.shipSprite(x,y,false);
+            let x = x+4;
+            do Sprites.shipSprite(x,y,true);
+        }
+
+        return;
+    }
+
+}
